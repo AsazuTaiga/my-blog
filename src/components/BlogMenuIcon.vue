@@ -40,7 +40,7 @@ export default {
   span {
     width: 100%;
     height: 2px;
-    background-color: #fff;
+    background-color: black;
     border-radius: 4px;
     position: absolute;
     left: 0;
@@ -58,16 +58,18 @@ export default {
   }
 
   &.is-open {
-    .top {
-      top: 12px;
-      transform: rotate(-45deg);
-    }
-    .middle {
-      background: transparent;
-    }
-    .bottom {
-      top: 12px;
-      transform: rotate(45deg);
+    span {
+      &.top {
+        top: 12px;
+        transform: rotate(-45deg);
+      }
+      &.middle {
+        background: transparent;
+      }
+      &.bottom {
+        top: 12px;
+        transform: rotate(45deg);
+      }
     }
   }
 }

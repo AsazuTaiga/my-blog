@@ -2,11 +2,14 @@
   <div class="wrapper">
     <blog-menu-icon class="menu-icon"></blog-menu-icon>
     <div class="modal" :class="{ 'is-open': isMenuOpen }">
-      <div>MENU</div>
       <ul>
-        <li>About</li>
-        <li>Tags</li>
-        <li>Author</li>
+        <li
+          v-for="menuItem in menuItems"
+          :key="menuItem.name"
+          @click="onMenuItemClick(menuItem)"
+        >
+          {{ menuItem.name }}
+        </li>
       </ul>
     </div>
   </div>
@@ -17,6 +20,24 @@ import BlogMenuIcon from "@/components/BlogMenuIcon";
 
 export default {
   name: "BlogMenu",
+  data() {
+    return {
+      menuItems: [
+        {
+          name: "Recents",
+          path: "/page/1"
+        },
+        {
+          name: "Tags",
+          path: "/tags"
+        },
+        {
+          name: "Author",
+          path: "/author"
+        }
+      ]
+    };
+  },
   components: {
     BlogMenuIcon
   },
@@ -24,14 +45,24 @@ export default {
     isMenuOpen() {
       return this.$store.state.isMenuOpen;
     }
+  },
+  methods: {
+    onMenuItemClick(menuItem) {
+      if (this.$route.path !== menuItem.path) {
+        this.$router.push(menuItem.path);
+      }
+      // close menu
+      this.$store.commit("toggleIsMenuOpen");
+    }
   }
 };
 </script>
 
 <style lang="scss" scoped>
+@import url("https://fonts.googleapis.com/css?family=Exo+2:300i");
+
 .wrapper {
   width: 100vw;
-  height: 100vh;
   position: absolute;
   z-index: 100;
 
@@ -41,39 +72,42 @@ export default {
     right: 18px;
   }
   .modal {
-    width: 100%;
-    height: 0%;
+    width: 100vw;
+    height: 0vh;
+    opacity: 0;
     top: 0;
     position: fixed;
-    background: rgba($color: #000000, $alpha: 0.8);
     backdrop-filter: blur(5px);
-    transition: all 400ms 0s ease-in-out;
+    transition: opacity 200ms 0s ease-in-out;
     overflow: hidden;
     list-style-type: none;
-    color: white;
+    color: black;
 
     &.is-open {
-      height: 100%;
-    }
-
-    div {
-      width: 100%;
-      text-align: center;
-      font-size: 48px;
+      height: 100vh;
+      opacity: 100;
     }
 
     ul {
-      width: 100%;
-      text-align: center;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       list-style: none;
       padding-left: 0;
       font-size: 36px;
 
       li {
+        width: 100vw;
         margin-top: 22px;
         transition: background-color 0.1s;
+        font-family: "Exo 2", sans-serif;
+        display: flex;
+        justify-content: center;
         &:hover {
-          background-color: rgba($color: #ffffff, $alpha: 0.1);
+          background-color: rgba($color: #999, $alpha: 0.1);
           cursor: pointer;
         }
       }

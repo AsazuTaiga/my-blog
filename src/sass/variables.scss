@@ -1,4 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Ruda');
-
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP');
+@import url("https://fonts.googleapis.com/css?family=Exo+2:300i");
 // Globals
-$body-font-family: 'Ruda', sans-serif;
+$body-font-family: 'Noto Sans JP', sans-serif;
+$code-background-color: none;
+$code-color: none;
+$code-kbd-font-size: 1.6vh;
+$code-kbd-font-weight: none;
+$code-kbd-border-radius: none;
+$code-padding: 1vw;
+$material-light: (
+  'background': #ededed
+);

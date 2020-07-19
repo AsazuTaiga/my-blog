@@ -1,4 +1,4 @@
-# ocha-blog
+# Coincidence
 
 ## Project setup
 ```

@@ -5,13 +5,13 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    isMenuOpen: false
+    // Global menu state.
+    isMenuOpen: false,
+    posts: undefined
   },
   mutations: {
     toggleIsMenuOpen() {
       this.state.isMenuOpen = !this.state.isMenuOpen;
     }
-  },
-  actions: {},
-  modules: {}
+  }
 });
