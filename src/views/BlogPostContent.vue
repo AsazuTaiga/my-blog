@@ -135,32 +135,29 @@ export default {
         font-family: "Noto Sans JP";
         line-height: 3.5vh;
         box-sizing: border-box;
-        padding: 1vh 0 1vh 3vh;
         position: relative;
-
-        &::before {
-          content: "";
-          height: 70%;
-          width: 0.5vh;
-          top: 0;
-          left: 0;
-          background-color: #f44336;
-          position: absolute;
-        }
-
-        &::after {
-          content: "";
-          height: 30%;
-          width: 0.5vh;
-          bottom: 0;
-          left: 0;
-          background-color: #aaaaaa;
-          position: absolute;
-        }
+        padding-bottom: 0.6vh;
+        border-bottom: 2px solid #aaaaaa;
+      }
+      h3 {
+        font-size: 2.5vh;
+        font-family: "Noto Sans JP";
+        box-sizing: border-box;
+        position: relative;
+        padding-left: 0.6vh;
+        border-left: 1vh solid #f44336;
+      }
+      h4 {
+        color: #666666;
       }
       code {
         font-family: "Consolas", "Monaco", "Andale Mono", "Ubuntu Mono",
           monospace;
+        &:not(.hljs) {
+          background-color: #e0e4ff;
+          color: #2e1d8f;
+          border-radius: 4px;
+        }
       }
       img {
         max-width: 100%;
@@ -171,6 +168,7 @@ export default {
       ul,
       ol {
         margin-top: -4vh;
+        margin-bottom: -3vh;
       }
       li {
         margin-bottom: -3vh;
