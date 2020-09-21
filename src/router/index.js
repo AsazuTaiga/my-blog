@@ -1,10 +1,10 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import BlogPostList from "@/views/BlogPostList";
-import BlogPostContent from "@/views/BlogPostContent";
-import BlogTagList from "@/views/BlogTagList";
-import BlogAuthorDetail from "@/views/BlogAuthorDetail";
-import BlogError from "@/views/BlogError";
+const BlogPostList = () => import("@/views/BlogPostList");
+const BlogPostContent = () => import("@/views/BlogPostContent");
+const BlogTagList = () => import("@/views/BlogTagList");
+const BlogAuthorDetail = () => import("@/views/BlogAuthorDetail");
+const BlogError = () => import("@/views/BlogError");
 
 Vue.use(VueRouter);
 
