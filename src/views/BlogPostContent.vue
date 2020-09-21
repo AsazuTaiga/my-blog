@@ -48,7 +48,10 @@ import BlogTag from "@/components/BlogTag";
 import BlogLoading from "@/components/BlogLoading";
 import BlogShareButtons from "@/components/BlogShareButtons";
 import marked from "marked";
-import hljs from "highlight.js";
+import hljs from "highlight.js/lib/highlight";
+
+import javascript from "highlight.js/lib/languages/javascript";
+import css from "highlight.js/lib/languages/css";
 
 export default {
   name: "BlogPostContent",
@@ -70,6 +73,8 @@ export default {
     }
   },
   created() {
+    hljs.registerLanguage("javascript", javascript);
+    hljs.registerLanguage("css", css);
     marked.setOptions({
       langPrefix: "hljs language-",
       highlight: function(code, lang) {
