@@ -64,7 +64,7 @@ export default {
   data() {
     return {
       post: undefined,
-      url: location.origin + "/#" + this.$route.path
+      url: location.origin + this.$route.path
     };
   },
   computed: {
