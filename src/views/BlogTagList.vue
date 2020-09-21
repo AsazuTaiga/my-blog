@@ -16,7 +16,6 @@
 </template>
 
 <script>
-import ContentfulAdapter from "@/api/ContentfulAdapter";
 import BlogTag from "@/components/BlogTag";
 import BlogLoading from "@/components/BlogLoading";
 export default {
@@ -31,12 +30,7 @@ export default {
     };
   },
   created() {
-    ContentfulAdapter.fetchTags().then(response => {
-      if (!response.items.length) {
-        this.$router.push("/error");
-      }
-      this.tags = response.items;
-    });
+    this.tags = this.$store.state.tags;
   }
 };
 </script>

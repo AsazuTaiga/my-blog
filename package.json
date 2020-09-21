@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "serve": "node ./src/scripts/setup.js && vue-cli-service serve",
+    "build": "node ./src/scripts/setup.js && vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
   },
@@ -12,6 +12,7 @@
     "contentful": "^7.14.5",
     "core-js": "^3.6.5",
     "css-loader": "^3.6.0",
+    "dotenv": "^8.2.0",
     "highlight.js": "^10.1.1",
     "marked": "^1.1.0",
     "remove-markdown": "^0.3.0",

@@ -47,7 +47,6 @@
 import BlogTag from "@/components/BlogTag";
 import BlogLoading from "@/components/BlogLoading";
 import BlogShareButtons from "@/components/BlogShareButtons";
-import ContentfulAdapter from "@/api/ContentfulAdapter";
 import marked from "marked";
 import hljs from "highlight.js";
 
@@ -77,23 +76,15 @@ export default {
         return hljs.highlightAuto(code, [lang]).value;
       }
     });
-    ContentfulAdapter.fetchBlogPostsBySlug(this.slug).then(response => {
-      if (!response.items.length) {
-        this.$router.push("/error");
-      }
-      this.post = response.items[0];
-    });
+    this.post = this.$store.state.blogPosts.filter(
+      post => post.fields.slug === this.slug
+    )[0];
   },
   watch: {
     $route(to) {
-      this.post = undefined;
-      ContentfulAdapter.fetchBlogPostsBySlug(to.params.slug).then(response => {
-        if (!response.items.length) {
-          this.$router.push("/error");
-        } else {
-          this.post = response.items[0];
-        }
-      });
+      this.post = this.$store.state.blogPosts.filter(
+        post => post.fileds.slug === to.params.slug
+      )[0];
     }
   }
 };

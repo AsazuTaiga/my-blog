@@ -43,7 +43,6 @@
 <script>
 import BlogPostCard from "@/components/BlogPostCard";
 import BlogLoading from "@/components/BlogLoading";
-import ContentfulAdapter from "@/api/ContentfulAdapter";
 export default {
   name: "BlogPostList",
   components: { BlogPostCard, BlogLoading },
@@ -61,49 +60,46 @@ export default {
   created() {
     // /page/pageNumber
     if (this.tagName) {
-      ContentfulAdapter.fetchBlogPostsByTagAtPage(
-        this.tagName,
-        this.pageNumber
-      ).then(response => {
-        if (!response.items.length) {
-          this.$router.push("/error");
-        } else {
-          this.posts = response.items;
-        }
-      });
+      this.posts = this.$store.state.blogPosts
+        .filter(post => {
+          if (!post.fields.tags) {
+            return false;
+          }
+          for (let tag of post.fields.tags) {
+            if (tag.fields.name.includes(this.tagName)) {
+              return true;
+            }
+          }
+          return false;
+        })
+        .slice((this.pageNumber - 1) * 12, this.pageNumber * 12);
     } else {
-      ContentfulAdapter.fetchBlogPostsAtPage(this.pageNumber).then(response => {
-        if (!response.items.length) {
-          this.$router.push("/error");
-        } else {
-          this.posts = response.items;
-        }
-      });
+      this.posts = this.$store.state.blogPosts.slice(
+        (this.pageNumber - 1) * 12,
+        this.pageNumber * 12
+      );
     }
   },
   watch: {
     $route(to) {
-      this.posts = undefined;
       if (to.params.tagName) {
-        ContentfulAdapter.fetchBlogPostsByTagAtPage(
-          to.params.tagName,
-          to.params.pageNumber
-        ).then(response => {
-          if (!response.items.length) {
-            this.$router.push("/error");
-          } else {
-            this.posts = response.items;
-          }
-        });
-      } else {
-        ContentfulAdapter.fetchBlogPostsAtPage(to.params.pageNumber).then(
-          response => {
-            if (!response.items.length) {
-              this.$router.push("/error");
-            } else {
-              this.posts = response.items;
+        this.posts = this.$store.state.blogPosts
+          .filter(post => {
+            if (!post.fields.tags) {
+              return false;
             }
-          }
+            for (let tag of post.fields.tags) {
+              if (tag.fields.name.includes(to.params.tagName)) {
+                return true;
+              }
+            }
+            return false;
+          })
+          .slice((this.pageNumber - 1) * 12, this.pageNumber * 12);
+      } else {
+        this.posts = this.$store.state.blogPosts.slice(
+          (to.params.pageNumber - 1) * 12,
+          to.params.pageNumber * 12
         );
       }
     }

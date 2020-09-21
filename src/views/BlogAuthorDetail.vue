@@ -39,7 +39,6 @@
 </template>
 
 <script>
-import ContentfulAdapter from "@/api/ContentfulAdapter";
 import BlogLoading from "@/components/BlogLoading";
 import marked from "marked";
 export default {
@@ -58,13 +57,7 @@ export default {
     }
   },
   created() {
-    ContentfulAdapter.fetchBlogAuthorDetail().then(response => {
-      if (!response) {
-        this.$route.push("/error");
-      }
-      this.authorDetail = response;
-      console.log(response);
-    });
+    this.authorDetail = this.$store.state.blogAuthorDetail;
   }
 };
 </script>
