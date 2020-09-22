@@ -3,37 +3,35 @@
     <template v-if="post">
       <v-row no-gutters justify="center">
         <v-col cols="12" md="8" xl="6">
-          <transition appear mode="in-out">
-            <v-card id="card" class="mx-auto rounded-xl">
-              <v-card-title id="title" class="font-weight-bold">
-                <h1>{{ post.fields.title }}</h1>
-              </v-card-title>
-              <blog-tag
-                v-for="tag in post.fields.tags"
-                :key="tag.index"
-                :tag="tag"
-                class="tag"
-                >{{ tag.fields.name }}</blog-tag
-              >
-              <div id="date">
-                <v-icon>mdi-calendar-month</v-icon>
-                {{ post.fields.publishDate }}
-              </div>
-              <v-card-text
-                id="body"
-                class="black--text"
-                v-html="html"
-              ></v-card-text>
-              <v-card-text>
-                <v-row justify="end">
-                  <blog-share-buttons
-                    :url="url"
-                    :title="post.fields.title"
-                  ></blog-share-buttons>
-                </v-row>
-              </v-card-text>
-            </v-card>
-          </transition>
+          <v-card id="card" class="mx-auto rounded-xl">
+            <v-card-title id="title" class="font-weight-bold">
+              <h1>{{ post.fields.title }}</h1>
+            </v-card-title>
+            <blog-tag
+              v-for="tag in post.fields.tags"
+              :key="tag.index"
+              :tag="tag"
+              class="tag"
+              >{{ tag.fields.name }}</blog-tag
+            >
+            <div id="date">
+              <v-icon>mdi-calendar-month</v-icon>
+              {{ post.fields.publishDate }}
+            </div>
+            <v-card-text
+              id="body"
+              class="black--text"
+              v-html="html"
+            ></v-card-text>
+            <v-card-text>
+              <v-row justify="end">
+                <blog-share-buttons
+                  :url="url"
+                  :title="post.fields.title"
+                ></blog-share-buttons>
+              </v-row>
+            </v-card-text>
+          </v-card>
         </v-col>
       </v-row>
     </template>
@@ -171,15 +169,6 @@ export default {
       }
     }
   }
-}
-.v-enter-active,
-.v-leave-active {
-  transition: all 1s ease;
-}
-.v-enter,
-.v-leave-to {
-  transform: translateY(20px);
-  opacity: 0;
 }
 #loading-wrapper {
   position: relative;

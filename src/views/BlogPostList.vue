@@ -3,33 +3,27 @@
     <template v-if="posts">
       <v-row>
         <v-col cols="12" md="6" xl="4" v-for="post in posts" :key="post.index">
-          <transition appear mode="in-out">
-            <blog-post-card class="card" :post="post" />
-          </transition>
+          <blog-post-card class="card" :post="post" />
         </v-col>
       </v-row>
       <v-row no-gutters id="prev-next-wrapper">
         <v-col cols="6">
           <v-row justify="start">
-            <transition appear mode="in-out">
-              <v-btn
-                secondary
-                outlined
-                :ripple="false"
-                v-show="pageNumber != 1"
-                @click="handlePrev()"
-                >NEWER POSTS</v-btn
-              >
-            </transition>
+            <v-btn
+              secondary
+              outlined
+              :ripple="false"
+              v-show="pageNumber != 1"
+              @click="handlePrev()"
+              >NEWER POSTS</v-btn
+            >
           </v-row>
         </v-col>
         <v-col cols="6">
           <v-row justify="end" v-show="!oldest">
-            <transition appear mode="in-out">
-              <v-btn secondary outlined :ripple="false" @click="handleNext()"
-                >OLDER POSTS</v-btn
-              >
-            </transition>
+            <v-btn secondary outlined :ripple="false" @click="handleNext()"
+              >OLDER POSTS</v-btn
+            >
           </v-row>
         </v-col>
       </v-row>
@@ -119,16 +113,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.v-enter-active,
-.v-leave-active {
-  transition: all 1s ease;
-}
-.v-enter,
-.v-leave-to {
-  transform: translateY(20px);
-  opacity: 0;
-}
-
 #loading-wrapper {
   position: relative;
   #loading {

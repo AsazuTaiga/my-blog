@@ -1,36 +1,34 @@
 <template>
   <v-container>
     <template v-if="authorDetail">
-      <transition appear mode="in-out">
-        <div>
-          <v-row justify="center">
-            <v-col cols="12" md="3" align-self="center">
-              <v-row justify="center">
-                <v-img
-                  id="icon"
-                  :src="authorDetail.fields.image.fields.file.url"
-                  aspect-ratio="1"
-                  class="grey lighten-2 rounded-circle"
-                />
-              </v-row>
-            </v-col>
-            <v-col cols="12" md="3" align-self="center">
-              <h1 id="name">{{ authorDetail.fields.name }}</h1>
-              <v-chip id="github" small :href="authorDetail.fields.github">
-                github
-              </v-chip>
-              <v-chip id="twitter" small :href="authorDetail.fields.twitter">
-                twitter
-              </v-chip>
-            </v-col>
-          </v-row>
-          <v-row justify="center">
-            <v-col cols="12" md="8" xl="4">
-              <div id="short-bio" v-html="shortBioHtml"></div>
-            </v-col>
-          </v-row>
-        </div>
-      </transition>
+      <div>
+        <v-row justify="center">
+          <v-col cols="12" md="3" align-self="center">
+            <v-row justify="center">
+              <v-img
+                id="icon"
+                :src="authorDetail.fields.image.fields.file.url"
+                aspect-ratio="1"
+                class="grey lighten-2 rounded-circle"
+              />
+            </v-row>
+          </v-col>
+          <v-col cols="12" md="3" align-self="center">
+            <h1 id="name">{{ authorDetail.fields.name }}</h1>
+            <v-chip id="github" small :href="authorDetail.fields.github">
+              github
+            </v-chip>
+            <v-chip id="twitter" small :href="authorDetail.fields.twitter">
+              twitter
+            </v-chip>
+          </v-col>
+        </v-row>
+        <v-row justify="center">
+          <v-col cols="12" md="8" xl="4">
+            <div id="short-bio" v-html="shortBioHtml"></div>
+          </v-col>
+        </v-row>
+      </div>
     </template>
     <v-row v-else id="loading-wrapper" justify="center">
       <blog-loading id="loading"></blog-loading>
@@ -63,16 +61,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.v-enter-active,
-.v-leave-active {
-  transition: all 1s ease;
-}
-.v-enter,
-.v-leave-to {
-  transform: translateY(20px);
-  opacity: 0;
-}
-
 #icon {
   min-width: 200px;
   max-width: 200px;

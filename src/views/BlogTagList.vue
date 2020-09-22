@@ -3,9 +3,7 @@
     <v-row v-if="tags">
       <v-col v-for="tag in tags" :key="tag.index" cols="12" md="4">
         <v-row justify="center">
-          <transition appear mode="in-out">
-            <blog-tag class="tag" :tag="tag"></blog-tag>
-          </transition>
+          <blog-tag class="tag" :tag="tag"></blog-tag>
         </v-row>
       </v-col>
     </v-row>
@@ -40,15 +38,6 @@ export default {
   height: 60px;
   width: 70%;
   font-size: 18px;
-}
-.v-enter-active,
-.v-leave-active {
-  transition: all 1s ease;
-}
-.v-enter,
-.v-leave-to {
-  transform: translateY(20px);
-  opacity: 0;
 }
 #loading-wrapper {
   position: relative;
