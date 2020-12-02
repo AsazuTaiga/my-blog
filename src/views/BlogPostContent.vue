@@ -126,7 +126,6 @@ export default {
       white-space: pre-wrap;
       h2 {
         font-size: 3vh;
-        font-family: "Noto Sans JP";
         line-height: 3.5vh;
         box-sizing: border-box;
         position: relative;
@@ -135,7 +134,6 @@ export default {
       }
       h3 {
         font-size: 2.5vh;
-        font-family: "Noto Sans JP";
         box-sizing: border-box;
         position: relative;
         padding-left: 0.6vh;
